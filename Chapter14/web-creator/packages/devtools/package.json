@@ -1,0 +1,43 @@
+{
+  "name": "@web-creator/devtools",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
+    "lint": "npm run --prefix ../../ lint",
+    "lint:fix": "npm run --prefix ../../ lint:fix"
+  },
+  "author": "Carlos Santana",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cli-color": "^2.0.2",
+    "@types/ip": "^1.1.0",
+    "@types/webpack-bundle-analyzer": "^4.6.0",
+    "@types/webpack-node-externals": "^2.5.3"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@types/file-loader": "^5.0.1",
+    "cli-color": "^2.0.3",
+    "css-loader": "^6.7.3",
+    "dotenv": "^16.0.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "path-browserify": "^1.0.1",
+    "run-script-webpack-plugin": "^0.1.1",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "typescript-plugin-styled-components": "^2.0.0",
+    "webpack": "^5.75.0",
+    "webpack-bundle-analyzer": "^4.7.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0",
+    "webpackbar": "^5.0.2"
+  }
+}

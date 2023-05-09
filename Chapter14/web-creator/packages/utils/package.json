@@ -1,0 +1,31 @@
+{
+  "name": "@web-creator/utils",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all clean compile webpack:production",
+    "build:dev": "cross-env NODE_ENV=development npm-run-all clean compile webpack:development",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
+    "lint": "npm run --prefix ../../ lint",
+    "lint:fix": "npm run --prefix ../../ lint:fix",
+    "webpack:development": "webpack --config=../../webpack.config.ts --env mode=production --env type=package --env packageName=utils",
+    "webpack:production": "webpack --config=../../webpack.config.ts --env mode=production --env type=package --env packageName=utils"
+  },
+  "author": "Carlos Santana",
+  "license": "MIT",
+  "dependencies": {
+    "currency-formatter": "^1.5.9",
+    "slug": "^8.2.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/currency-formatter": "^1.5.1",
+    "@types/slug": "^5.0.3",
+    "@types/uuid": "^9.0.0"
+  }
+}

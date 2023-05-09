@@ -1,0 +1,41 @@
+{
+  "name": "web-creator",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "eslint --ext .tsx,.ts ./packages/**/src",
+    "lint:fix": "eslint --ext .tsx,.ts ./packages/**/src",
+    "build": "npm-run-all build:*",
+    "build:devtools": "cd ./packages/devtools && npm run build",
+    "build:utils": "cd ./packages/utils && npm run build",
+    "build:authentication": "cd ./packages/authentication && npm run build",
+    "build:design-system": "cd ./packages/design-system && npm run build",
+    "build:api": "cd ./packages/api && npm run build"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "webpack": "^5.75.0",
+    "webpack-merge": "^5.8.0"
+  }
+}

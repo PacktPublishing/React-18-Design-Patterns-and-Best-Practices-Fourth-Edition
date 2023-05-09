@@ -1,0 +1,44 @@
+{
+  "name": "@web-creator/frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development npm run next:dev",
+    "build": "next build",
+    "next": "ts-node src/server.ts",
+    "next:dev": "ts-node src/server.ts",
+    "lint": "npm run --prefix ../../ lint",
+    "lint:fix": "npm run --prefix ../../ lint:fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Carlos Santana",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/isomorphic-fetch": "^0.0.36",
+    "@types/styled-components": "^5.1.26",
+    "babel-plugin-jsx-remove-data-test-id": "^3.0.0",
+    "babel-plugin-styled-components": "^2.0.7"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.7",
+    "@web-creator/authentication": "1.0.0",
+    "@web-creator/design-system": "^1.0.0",
+    "@web-creator/devtools": "1.0.0",
+    "@web-creator/utils": "^1.0.0",
+    "babel-preset-next": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "isomorphic-fetch": "^3.0.0",
+    "next": "^13.1.6",
+    "react-cookie": "^4.1.1",
+    "styled-components": "^5.3.6",
+    "webpack": "^5.75.0"
+  }
+}

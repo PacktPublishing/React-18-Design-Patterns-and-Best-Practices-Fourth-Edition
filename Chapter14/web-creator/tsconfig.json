@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@web-creator/*": ["*/src"]
+    }
+  }
+}

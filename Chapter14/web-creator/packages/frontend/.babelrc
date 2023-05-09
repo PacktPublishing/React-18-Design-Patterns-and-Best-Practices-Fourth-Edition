@@ -1,0 +1,9 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [["styled-components", { "ssr": true, "preprocess": false }]],
+  "env": {
+    "production": {
+      "plugins": ["babel-plugin-jsx-remove-data-test-id"]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+# ⭐ Env
+env:
+  browser: true
+  es2021: true
+  node: true
+
+# ⭐ Extends
+extends:
+  - plugin:react/recommended
+  - plugin:prettier/recommended
+  - airbnb
+  - airbnb-typescript
+
+# ⭐ Parser
+parser: '@typescript-eslint/parser'
+
+# ⭐ Parser options
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  sourceType: module
+  project:
+    - 'packages/*/tsconfig.json'
+
+# ⭐ Plugins
+plugins:
+  - react
+  - '@typescript-eslint'
+  - prettier
+
+# ⭐ Settings
+settings:
+  import/parsers:
+    '@typescript-eslint/parser': ['.ts', '.tsx']
+  import/resolver:
+    typescript:
+      alwaysTryTypes: true
+
+# ⭐ Rules
+rules:
+  # ⭐ Imports & Files extensions
+  import/no-import-module-exports: 'off'
+  # Avoid .ts and .tsx import extensions
+  import/extensions: 'off'
+  # Avoid extraneous dependencies (devDependencies)
+  import/no-extraneous-dependencies: [error, { devDependencies: true }]
+  # Turn on errors for missing imports
+  import/no-unresolved: 'off'
+  # Warning .tsx import extensions on React
+  react/jsx-filename-extension: [warn, { extensions: [.tsx] }]
+  # We like to export single constants and functions
+  import/prefer-default-export: 'off'
+  # We use dynamic requires
+  import/no-dynamic-require: 'off'
+  global-require: 'off'
+  # We love to export default on index files
+  no-restricted-exports: 'off'
+
+  # ⭐ React rules
+  # This rule does not work with TS functions
+  react/function-component-definition: 'off'
+  # We love to spread props
+  react/jsx-props-no-spreading: 'off'
+  # We like to use array indexes as keys
+  react/no-array-index-key: 'off'
+  # This rules is for React 15
+  react/require-default-props: 'off'
+  # We want to have more than one expression per line
+  react/jsx-one-expression-per-line: 'off'
+  # This is for React 15
+  react/prop-types: 'off'
+
+  # ⭐ General rules
+  # Fixing conflict between prettier and eslint with this rule
+  object-curly-newline: 'off'
+  # Disabling operator-linebreak & implicit-arrow-linebreak since prettier does not suppor it
+  operator-linebreak: 'off'
+  implicit-arrow-linebreak: 'off'
+  # We need to re-assign some function parameters
+  no-param-reassign: 'off'
+  # We like to use hasOwnProperty
+  no-prototype-builtins: 'off'
+  # We use for..in
+  no-restricted-syntax: 'off'
+  # We like arrow parenthesis
+  prettier/prettier: [error, { arrowParens: always }]
+  # We like nested ternaries
+  no-nested-ternary: 'off'
+  # Conflicting with prettier
+  react/jsx-wrap-multilines: 'off'
+  # We need __NEXT_DATA__
+  no-underscore-dangle: 'off'
+  # This is affecting the authentication
+  no-promise-executor-return: 'off'
+  # We don't need a default in all cases
+  default-case: 'off'
+  # Prefering prettier format
+  function-paren-newline: 'off'
+  # We don't need consistent returns
+  consistent-return: 'off'
+
+  # ⭐ JSX-A11Y rules
+  jsx-a11y/no-noninteractive-element-interactions: 'off'
+  jsx-a11y/click-events-have-key-events: 'off'
+  jsx-a11y/anchor-is-valid: 'off'
+
+  # ⭐ TypeScript rules
+  # We don't like comma-dangle
+  '@typescript-eslint/comma-dangle': 'off'
+  # Disabling indent in favor of prettier indentation
+  '@typescript-eslint/indent': 'off'
+  # Disabling base rule because reports incorrect errors with TypeScript types
+  '@typescript-eslint/no-redeclare': 'off'
+  # We don't like semicolons
+  '@typescript-eslint/semi': 'off'
+  # Need it to stop if SERVICE is not passed
+  '@typescript-eslint/no-throw-literal': 'off'
+
+# ⭐ Overrides
+overrides:
+  [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: { 'no-undef': 'off' },
+      parserOptions: { project: ['./tsconfig.json'] }
+    }
+  ]

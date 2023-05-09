@@ -1,0 +1,46 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "start": "pm2 start apps.json",
+    "build": "rm -rf dist && tsc -p . --traceResolution",
+    "stop": "pm2 stop apps.json",
+    "restart": "pm2 restart apps.json",
+    "lint": "eslint . --ext .js,.tsx,.ts",
+    "lint:fix": "eslint . --fix --ext .js,.tsx,.ts",
+    "test": "jest src",
+    "backup": "./scripts/backup.sh",
+    "restore": "./scripts/restore.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@contentpi/lib": "^1.0.10",
+    "@graphql-tools/load-files": "^6.6.1",
+    "@graphql-tools/merge": "^8.3.6",
+    "@graphql-tools/schema": "^9.0.4",
+    "apollo-server-express": "^3.10.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "graphql-middleware": "^6.1.33",
+    "graphql-tag": "^2.12.6",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "pm2": "^5.2.2",
+    "sequelize": "^6.25.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.9",
+    "eslint": "^8.25.0",
+    "prettier": "^2.7.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.4"
+  }
+}

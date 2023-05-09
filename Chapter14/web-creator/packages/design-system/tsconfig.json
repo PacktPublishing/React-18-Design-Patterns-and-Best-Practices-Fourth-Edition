@@ -1,0 +1,39 @@
+{
+  "extends": "../../tsconfig.common.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "files": [
+    "src/components/Alert/index.ts",
+    "src/components/Avatar/index.ts",
+    "src/components/Badge/index.ts",
+    "src/components/Breadcrumb/index.ts",
+    "src/components/Button/index.ts",
+    "src/components/Checkbox/index.ts",
+    "src/components/Dialog/index.ts",
+    "src/components/GlobalStyles/index.ts",
+    "src/components/Icon/index.ts",
+    "src/components/Input/index.ts",
+    "src/components/Notification/index.ts",
+    "src/components/Pagination/index.ts",
+    "src/components/Paper/index.ts",
+    "src/components/RenderIf/index.ts",
+    "src/components/Select/index.ts",
+    "src/components/Spinner/index.ts",
+    "src/components/Switcher/index.ts",
+    "src/components/Table/index.ts",
+    "src/components/Tags/index.ts",
+    "src/components/Text/index.ts",
+    "src/components/TextArea/index.ts",
+    "src/components/TextField/index.ts",
+    "src/components/Calendar/index.ts",
+    "src/components/DayPicker/index.ts",
+    "src/components/Svg/index.ts",
+    "src/components/ThemeToggler/index.ts",
+    "src/index.ts"
+  ],
+  "include": ["src/**/*"]
+}

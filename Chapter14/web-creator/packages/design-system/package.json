@@ -1,0 +1,42 @@
+{
+  "name": "@web-creator/design-system",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all clean compile webpack:production",
+    "build:dev": "cross-env NODE_ENV=development npm-run-all clean compile webpack:development",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
+    "lint": "npm run --prefix ../../ lint",
+    "lint:fix": "npm run --prefix ../../ lint:fix",
+    "prepublishOnly": "npm run lint && npm run build",
+    "sandbox": "webpack serve --open --config=../../webpack.config.ts --env mode=development --env type=package --env sandbox=true --env packageName=design-system",
+    "test": "jest",
+    "versioning": "./scripts/versioning.sh",
+    "webpack:development": "webpack --config=../../webpack.config.ts --env mode=development --env type=package --env packageName=design-system",
+    "webpack:production": "webpack --config=webpack.config.ts --env mode=production --env type=package --env packageName=design-system"
+  },
+  "author": "Carlos Santana",
+  "license": "MIT",
+  "dependencies": {
+    "@web-creator/devtools": "1.0.0",
+    "@web-creator/utils": "1.0.0",
+    "prismjs": "^1.29.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.8.1",
+    "react-toast-notifications": "^2.5.1",
+    "webpack": "^5.75.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/styled-components": "^5.1.26"
+  }
+}

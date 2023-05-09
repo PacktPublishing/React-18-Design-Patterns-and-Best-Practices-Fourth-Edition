@@ -1,0 +1,53 @@
+{
+  "name": "@web-creator/api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all clean compile webpack:production",
+    "build:dev": "cross-env NODE_ENV=development npm-run-all clean compile webpack:development",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
+    "dev": "ts-node-dev src/index.ts",
+    "lint": "npm run --prefix ../../ lint",
+    "lint:fix": "npm run --prefix ../../ lint:fix",
+    "start": "pm2 start apps.json",
+    "stop": "pm2 stop apps.json",
+    "restart": "pm2 restart apps.json",
+    "backup": "./scripts/backup.sh",
+    "restore": "./scripts/restore.sh",
+    "webpack:development": "webpack --config=webpack.config.ts --env mode=production --env type=api --env packageName=api",
+    "webpack:production": "webpack --config=webpack.config.ts --env mode=development --env type=api --env packageName=api"
+  },
+  "author": "Carlos Santana",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-tools/merge": "8.3.17",
+    "@graphql-tools/schema": "9.0.15",
+    "@web-creator/authentication": "1.0.0",
+    "@web-creator/utils": "^1.0.0",
+    "apollo-server-express": "^3.6.6",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "graphql": "16.6.0",
+    "graphql-middleware": "6.1.33",
+    "graphql-tag": "2.12.6",
+    "isomorphic-fetch": "^3.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
+    "pg-native": "^3.0.1",
+    "sequelize": "^6.28.0",
+    "sequelize-typescript": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/express-jwt": "^6.0.4",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.11.18",
+    "@types/pg": "^8.6.6",
+    "ts-node-dev": "2.0.0"
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Toggle</title>
+  <style>
+    .toggle {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      text-align: center;
+      line-height: 100px;
+      color: white;
+    }
+
+    .on {
+      background-color: #f00;
+    }
+
+    .off {
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+    <div id="toggle" class="toggle">Click it</div>
+    <script>    
+      const toggleButton = document.querySelector('#toggle')  
+
+      toggleButton.addEventListener('click', () => { 
+        if (toggleButton.classList.contains('on')) { 
+            toggleButton.classList.remove('on') 
+            toggleButton.classList.add('off') 
+        } else { 
+            toggleButton.classList.remove('off') 
+            toggleButton.classList.add('on') 
+        }
+      }) 
+  </script>
+</body>
+</html>

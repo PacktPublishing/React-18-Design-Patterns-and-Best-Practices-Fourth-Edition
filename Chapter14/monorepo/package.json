@@ -1,0 +1,7 @@
+{
+  "name": "web-creator",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
