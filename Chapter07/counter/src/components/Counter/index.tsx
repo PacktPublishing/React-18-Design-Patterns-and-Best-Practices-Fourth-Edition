@@ -4,8 +4,12 @@ type Props = {
   initialCount: number
 }
 
+type Count = {
+  count: number
+}
+
 const Counter: FC<Props> = (props) => {
-  const [state, setState] = useState<any>({ count: props.initialCount })
+  const [state, setState] = useState<Count>({ count: props.initialCount })
 
   const handleClick = () => {
     setState({

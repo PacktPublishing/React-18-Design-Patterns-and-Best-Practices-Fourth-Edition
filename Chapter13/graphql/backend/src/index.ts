@@ -1,8 +1,12 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import cors from 'cors'
+import http from 'http'
 import express from 'express'
 import { applyMiddleware } from 'graphql-middleware'
+import { json } from 'body-parser'
 
 import { $server } from '../config'
 import resolvers from './graphql/resolvers'
@@ -10,6 +14,7 @@ import typeDefs from './graphql/types'
 import models from './models'
 
 const app = express()
+const httpServer = http.createServer(app)
 
 const corsOptions = {
   origin: '*',
@@ -35,21 +40,28 @@ const schema = applyMiddleware(
 // Apollo Server
 const apolloServer = new ApolloServer({
   schema,
-  context: async () => ({
-    models
-  })
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 
-const alter = true
-const force = false
+const main = async () => {
+  const alter = true
+  const force = false
 
-models.sequelize.sync({ alter, force }).then(() => {
-  apolloServer.start().then(() => {
-    apolloServer.applyMiddleware({ app, path: '/graphql', cors: corsOptions })
+  await apolloServer.start()
 
-    app.listen({ port: $server.port }, () => {
-      // eslint-disable-next-line no-console
-      console.log(`Running on http://localhost:${$server.port}/graphql`)
+  await models.sequelize.sync({ alter, force })
+
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>(),
+    json(),
+    expressMiddleware(apolloServer, {
+      context: async () => ({ models })
     })
-  })
-})
+  )
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: $server.port }, resolve))
+  console.log(`🚀 Server ready at http://localhost:${$server.port}/graphql`)
+}
+
+main()
