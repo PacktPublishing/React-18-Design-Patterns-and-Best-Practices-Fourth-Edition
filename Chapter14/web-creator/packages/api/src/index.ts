@@ -1,11 +1,15 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { ts } from '@web-creator/utils'
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import bodyParser from 'body-parser'
+import http from 'http'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
 import { applyMiddleware } from 'graphql-middleware'
+import { json } from 'body-parser'
 
 import { Service } from './types/config'
 
@@ -24,6 +28,7 @@ const models = require(`./services/${service}/models`).default
 const seeds = require(`./services/${service}/seeds`).default
 
 const app = express()
+const httpServer = http.createServer(app)
 
 const corsOptions = {
   origin: '*',
@@ -53,26 +58,32 @@ const schema = applyMiddleware(
 // Apollo Server
 const apolloServer = new ApolloServer({
   schema,
-  context: async () => ({
-    models // Here we are passing the models to the context
-  })
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 
 // Database Sync
-const alter = true
-const force = false
+const main = async () => {
+  const alter = true
+  const force = false
 
-models.sequelize.sync({ alter, force }).then(() => {
-  apolloServer.start().then(() => {
-    apolloServer.applyMiddleware({ app, path: '/graphql', cors: corsOptions })
+  await apolloServer.start()
+  await models.sequelize.sync({ alter, force })
 
-    app.listen({ port: 4000 }, () => {
-      // Setting up initial seeds
-      console.log('Initializing Seeds...')
-      seeds()
+  // Setting up initial seeds
+  console.log('Initializing Seeds...')
+  seeds()
 
-      // eslint-disable-next-line no-console
-      console.log('Running on http://localhost:4000')
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>(),
+    json(),
+    expressMiddleware(apolloServer, {
+      context: async () => ({ models })
     })
-  })
-})
+  )
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve))
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`)
+}
+
+main()

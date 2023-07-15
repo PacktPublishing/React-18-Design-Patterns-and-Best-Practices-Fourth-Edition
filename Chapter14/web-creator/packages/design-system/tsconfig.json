@@ -17,7 +17,6 @@
     "src/components/GlobalStyles/index.ts",
     "src/components/Icon/index.ts",
     "src/components/Input/index.ts",
-    "src/components/Notification/index.ts",
     "src/components/Pagination/index.ts",
     "src/components/Paper/index.ts",
     "src/components/RenderIf/index.ts",

@@ -14,14 +14,13 @@
     "lint": "npm run --prefix ../../ lint",
     "lint:fix": "npm run --prefix ../../ lint:fix",
     "prepublishOnly": "npm run lint && npm run build",
-    "webpack:development": "webpack --config=webpack.config.ts --env mode=development --env type=package --env packageName=authentication",
-    "webpack:production": "webpack --config=webpack.config.ts --env mode=production --env type=package --env packageName=authentication"
+    "webpack:development": "webpack --config=../../webpack.config.ts --env mode=development --env type=package --env packageName=authentication",
+    "webpack:production": "webpack --config=../../webpack.config.ts --env mode=production --env type=package --env packageName=authentication"
   },
   "author": "Carlos Santana",
   "license": "MIT",
   "dependencies": {
     "@web-creator/utils": "^1.0.0",
-    "apollo-server-express": "^3.6.7",
     "jsonwebtoken": "^8.5.1"
   }
 }

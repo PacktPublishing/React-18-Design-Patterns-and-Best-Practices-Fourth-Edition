@@ -18,7 +18,7 @@
     "test": "jest",
     "versioning": "./scripts/versioning.sh",
     "webpack:development": "webpack --config=../../webpack.config.ts --env mode=development --env type=package --env packageName=design-system",
-    "webpack:production": "webpack --config=webpack.config.ts --env mode=production --env type=package --env packageName=design-system"
+    "webpack:production": "webpack --config=../../webpack.config.ts --env mode=production --env type=package --env packageName=design-system"
   },
   "author": "Carlos Santana",
   "license": "MIT",
@@ -26,10 +26,11 @@
     "@web-creator/devtools": "1.0.0",
     "@web-creator/utils": "1.0.0",
     "prismjs": "^1.29.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "react-toast-notifications": "^2.5.1",
+    "svg-url-loader": "^8.0.0",
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0"
   },

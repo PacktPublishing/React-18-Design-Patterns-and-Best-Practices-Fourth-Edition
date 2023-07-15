@@ -1,4 +1,4 @@
-import { Button, Input, Notification, RenderIf } from '@web-creator/design-system'
+import { Button, Input, RenderIf } from '@web-creator/design-system'
 import { getRedirectToUrl, redirectTo } from '@web-creator/utils'
 import React, { FC, useContext, useState } from 'react'
 import { FormContext } from '~/contexts/form'
@@ -49,13 +49,7 @@ const Login: FC<Props> = () => {
   return (
     <>
       <RenderIf isTrue={invalidLogin && notification.message !== ''}>
-        <Notification
-          notification={notification}
-          type="error"
-          position="bottom-right"
-          maxNotifications={5}
-          duration={5}
-        />
+        {notification.message}
       </RenderIf>
 
       <CSS.Login>

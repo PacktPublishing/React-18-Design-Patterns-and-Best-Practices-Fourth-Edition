@@ -1,5 +1,4 @@
 import { base64, is, security } from '@web-creator/utils'
-import { AuthenticationError } from 'apollo-server-express'
 import jwt from 'jsonwebtoken'
 
 export const secretKey = 'W3bBu1ld3r'
@@ -49,18 +48,18 @@ export const authenticate = async (
   const user = await getUserBy(where, ['god', 'admin', 'editor', 'user'], models)
 
   if (!user) {
-    throw new AuthenticationError('Invalid Login')
+    throw new Error('Invalid Login')
   }
 
   const passwordMatch = is.PasswordMatch(security.encrypt(password), user.password)
   const isActive = user.active
 
   if (!passwordMatch) {
-    throw new AuthenticationError('Invalid Login')
+    throw new Error('Invalid Login')
   }
 
   if (!isActive) {
-    throw new AuthenticationError('Your account is not activated yet')
+    throw new Error('Your account is not activated yet')
   }
 
   const [token] = await createToken(user)
