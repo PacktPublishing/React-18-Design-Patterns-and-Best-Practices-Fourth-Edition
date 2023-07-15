@@ -1,5 +1,4 @@
 import { encrypt, isPasswordMatch } from '@contentpi/lib'
-import { AuthenticationError } from 'apollo-server-express'
 
 import { IModels, IToken, IUser } from '../types'
 import { createToken } from './jwt'
@@ -24,7 +23,7 @@ export const doLogin = async (
 
   // If the user does not exists we return Invalid Login
   if (!user) {
-    throw new AuthenticationError('Invalid Login')
+    throw new Error('Invalid Login')
   }
 
   // We verify that our encrypted password is the same as the user.password
@@ -36,12 +35,12 @@ export const doLogin = async (
 
   // If the password does not match we return invalid login
   if (!passwordMatch) {
-    throw new AuthenticationError('Invalid Login')
+    throw new Error('Invalid Login')
   }
 
   // If the account is not active we return an error
   if (!isActive) {
-    throw new AuthenticationError('Your account is not activated yet')
+    throw new Error('Your account is not activated yet')
   }
 
   // If the user exists, the password is correct and the account is active
